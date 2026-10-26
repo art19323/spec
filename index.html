@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Спецификация — мебель, освещение, сантехника</title>
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: Calibri, "Segoe UI", system-ui, sans-serif;
+        font-size: 15px;
+        color: #14161a;
+        margin: 0;
+        background: #f1f2f5;
+    }
+
+    .wrap {
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 0 18px 48px;
+    }
+
+    .hdr { padding: 26px 0 14px; }
+    .hdr h1 { font-size: 23px; margin: 0 0 6px; letter-spacing: -.2px; }
+    .hdr .sub { margin: 0; color: #6b7280; font-size: 13px; }
+
+    /* --- переключатель таблиц --- */
+    .tabbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 0 12px;
+        background: #f1f2f5;
+        border-bottom: 1px solid #e0e2e7;
+    }
+    .tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 15px;
+        border: 1px solid #d5d8de;
+        border-radius: 999px;
+        background: #fff;
+        color: #14161a;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .tab:hover { border-color: #9aa3b2; }
+    .tab.active { background: #14161a; border-color: #14161a; color: #fff; }
+    .tab .cnt {
+        font-size: 12px;
+        line-height: 1;
+        padding: 4px 7px;
+        border-radius: 999px;
+        background: #eef0f4;
+        color: #4b5563;
+    }
+    .tab.active .cnt { background: #3b414c; color: #fff; }
+
+    /* --- карточка таблицы --- */
+    .panel {
+        display: none;
+        margin-top: 16px;
+        background: #fff;
+        border: 1px solid #e3e5ea;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(16, 24, 40, .05);
+    }
+    .panel.active { display: block; }
+
+    .panel h2 {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0 0 14px;
+        padding: 10px;
+        background: #d9d9d9;
+        border: 1px solid #000;
+    }
+
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .table-wrap table { min-width: 1060px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background: #f2d7b6;
+        font-weight: bold;
+        text-align: center;
+    }
+    td:first-child { text-align: center; font-weight: bold; width: 46px; }
+    td:nth-child(2) { width: 17%; }
+    td:nth-child(3) { width: 19%; }
+    td:nth-child(4) { width: 26%; }
+    td:nth-child(5) { text-align: center; width: 78px; }
+    td:nth-child(6) { text-align: center; width: 100px; }
+    td:nth-child(7) { width: 13%; }
+
+    .variant { background: #fff3cd; font-style: italic; }
+
+    .link { font-size: 12px; color: #0645ad; word-break: break-all; }
+
+    .notes {
+        margin-top: 16px;
+        padding: 14px 16px;
+        border: 1px solid #e3e5ea;
+        background: #fafbfc;
+        border-radius: 8px;
+    }
+    .notes h3 { margin: 0 0 8px; font-size: 14px; }
+    .notes ul { margin: 0; padding-left: 20px; }
+    .notes li { margin-bottom: 5px; font-size: 13.5px; color: #333; }
+
+    .empty-cell {
+        text-align: center;
+        color: #8a8f99;
+        font-style: italic;
+        padding: 22px;
+    }
+
+    .foot {
+        margin-top: 22px;
+        text-align: right;
+        font-size: 12px;
+        color: #8a8f99;
+    }
+
+    @media print {
+        @page { size: A4 landscape; margin: 12mm; }
+        body { background: #fff; font-size: 10.5pt; }
+        .wrap { max-width: none; padding: 0; }
+        .tabbar, .foot { display: none; }
+        .panel {
+            display: block !important;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0;
+            margin: 0 0 18mm;
+            break-inside: auto;
+        }
+        .panel + .panel { break-before: page; }
+        .table-wrap table { min-width: 0; }
+        .table-wrap { overflow: visible; }
+        thead { display: table-header-group; }
+        tr { break-inside: avoid; }
+        .link { color: #000; }
+        .notes { background: #fff; }
+    }
+
+    @media (max-width: 640px) {
+        body { font-size: 14px; }
+        .wrap { padding: 0 8px 40px; }
+        .hdr { padding: 16px 0 10px; }
+        .hdr h1 { font-size: 18px; }
+        .hdr .sub { font-size: 12px; }
+        .tabbar { gap: 6px; padding: 8px 0; }
+        .tab { font-size: 12.5px; padding: 7px 11px; }
+        .tab .cnt { padding: 3px 6px; }
+        .panel { padding: 8px; border-radius: 8px; }
+        .panel h2 { font-size: 13px; padding: 8px; }
+        .table-wrap table { min-width: 900px; }
+        th, td { padding: 6px; }
+        .link { font-size: 11px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+    <header class="hdr">
+        <h1>Спецификация</h1>
+        <p class="sub">Мебель · Светильники · Сантехника — цены на октябрь 2026</p>
+    </header>
+
+    <nav class="tabbar" id="tabbar">
+        <a class="tab active" href="#mebel" data-tab="mebel">Мебель <span class="cnt">0</span></a>
+        <a class="tab" href="#light" data-tab="light">Светильники <span class="cnt">0</span></a>
+        <a class="tab" href="#plumb" data-tab="plumb">Сантехника <span class="cnt">0</span></a>
+    </nav>
+
+    <section class="panel active" id="panel-mebel">
+        <h2>Спецификация мебели</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование</th>
+                        <th>Производитель / артикул</th>
+                        <th>Габариты / Примечание</th>
+                        <th>Кол-во</th>
+                        <th>Цена, ед</th>
+                        <th>Контакты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>1</td>
+                    <td>Диван угловой Аронт Мини</td>
+                    <td>Divan.by<br>Велюр (Velvet Pink)<br>Артикул: 24612-7-1</td>
+                    <td>Габариты уточнить на сайте<br><span class="link">divan.by/product/divan-uglovoj-aront-mini-velvet-pink</span></td>
+                    <td>1</td>
+                    <td>3831 руб.</td>
+                    <td>divan.by<br>+375 (29) 668-66-44</td>
+                    </tr>
+
+                    <tr>
+                    <td>2</td>
+                    <td>Кресло Тилар</td>
+                    <td>Divan.by<br>Мех Молочный (Cozy Milk)</td>
+                    <td>Габариты уточнить на сайте<br><span class="link">divan.by/product/kreslo-tilar-cozy-milk</span></td>
+                    <td>1</td>
+                    <td>Инд. просчет</td>
+                    <td>divan.by<br>+375 (29) 668-66-44</td>
+                    </tr>
+
+                    <tr>
+                    <td>3</td>
+                    <td>Пуф Ньюбери</td>
+                    <td>Divan.by<br>Велюр Серый (Velvet Grey)<br>Ножки: артикул 2716629-170-1</td>
+                    <td>Пуф с выбором ножек<br><span class="link">divan.by/product/puf-nyuberi-velvet-grey</span></td>
+                    <td>1</td>
+                    <td>241 руб.</td>
+                    <td>divan.by<br>+375 (44) 763-02-65</td>
+                    </tr>
+
+                    <tr>
+                    <td>4</td>
+                    <td>Кровать Foster 160</td>
+                    <td>Divan.by<br>Soft Terra</td>
+                    <td>Ширина 160 см<br><span class="link">divan.by/product/krovat-foster-160-soft-terra</span></td>
+                    <td>1</td>
+                    <td>Инд. просчет</td>
+                    <td>divan.by<br>+375 (44) 763-02-65</td>
+                    </tr>
+
+                    <tr class="variant">
+                    <td rowspan="2">5</td>
+                    <td rowspan="2">Стул для рабочего стола<br><br><strong>ВАРИАНТ 1 или ВАРИАНТ 2</strong></td>
+                    <td><strong>Вариант 1:</strong><br>Стул Айвин<br>Divan.by<br>Велюр Бежевый / Массив бука натуральный</td>
+                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><span class="link">divan.by/product/stul-ajvin-velvet-beige</span></td>
+                    <td>2 шт</td>
+                    <td>612 руб.</td>
+                    <td>divan.by<br>+375 (44) 763-02-65</td>
+                    </tr>
+                    <tr class="variant">
+                    <td><strong>Вариант 2:</strong><br>Стул Айвин<br>Divan.by<br>Велюр Бежевый / Массив бука натуральный<br>(тот же артикул, резервный вариант)</td>
+                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><span class="link">divan.by/product/stul-ajvin-velvet-beige</span></td>
+                    <td>2 шт</td>
+                    <td>612 руб.</td>
+                    <td>divan.by<br>+375 (44) 763-02-65</td>
+                    </tr>
+
+                    <tr class="variant">
+                    <td rowspan="2">6</td>
+                    <td rowspan="2">Стул складной для кухни<br><br><strong>ВАРИАНТ 1 или ВАРИАНТ 2</strong></td>
+                    <td><strong>Вариант 1:</strong><br>Стул складной деревянный Хоф<br>Массив бука</td>
+                    <td>Складная конструкция<br>Габариты уточнить на сайте<br><span class="link">ozon.by/product/stul-skladnoy-derevyannyy-hof-dlya-kuhni-788159696</span></td>
+                    <td>4–6 шт</td>
+                    <td>Уточнить</td>
+                    <td>ozon.by</td>
+                    </tr>
+                    <tr class="variant">
+                    <td><strong>Вариант 2:</strong><br>Стул Хоф<br>Bentwood<br>Массив бука, венская гнутая мебель</td>
+                    <td>Классический дизайн<br>Габариты уточнить на сайте<br><span class="link">bentwood.ru/catalog/stulya_main/stul_khof</span></td>
+                    <td>4–6 шт</td>
+                    <td>Уточнить</td>
+                    <td>bentwood.ru</td>
+                    </tr>
+
+                    <tr>
+                    <td>7</td>
+                    <td>Журнальный стол Хейко-2</td>
+                    <td>Divan.by<br>Хейко-2 Black</td>
+                    <td>Чёрный, современный дизайн<br><span class="link">divan.by/product/jurnalnyj-stol-hejko-2-black</span></td>
+                    <td>1</td>
+                    <td>Инд. просчет</td>
+                    <td>divan.by<br>+375 (44) 763-02-65</td>
+                    </tr>
+
+                    <tr>
+                    <td>8</td>
+                    <td>Механизм для выдвижного стола с ножкой</td>
+                    <td>Starax S-2145-A<br>Производитель: Starax (Турция)<br>Импортёр: ООО «Фортэ Пласт»</td>
+                    <td>Ширина корпуса: 600 мм<br>Цвет: антрацит<br><span class="link">forte-plast.by/mekhanizm-dlya-vidvizhnogo-stola-starax-s-2145-a</span></td>
+                    <td>1</td>
+                    <td>953.10 руб.</td>
+                    <td>ООО «Фортэ Пласт»<br>223050, Минская обл.,<br>аг. Колодищи,<br>ул. 50 лет БССР, 29А</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="notes">
+            <h3>Примечания:</h3>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Цены указаны на момент составления спецификации (октябрь 2026). Актуальные цены уточнять у поставщиков.</li>
+                <li><strong>Позиция №5 (стулья для рабочего стола):</strong> предложено 2 варианта — выбор согласовать с заказчиком.</li>
+                <li><strong>Позиция №6 (складные стулья для кухни):</strong> предложено 2 варианта от разных поставщиков — выбор согласовать с заказчиком.</li>
+                <li>«Инд. просчет» — индивидуальный просчет, цена уточняется в зависимости от конфигурации и выбранных опций.</li>
+                <li>Все размеры и артикулы проверить по ссылкам на сайтах поставщиков перед заказом.</li>
+                <li>Гарантийные условия и сроки доставки уточнять при оформлении заказа.</li>
+                </ul>
+        </div>
+    </section>
+
+    <section class="panel" id="panel-light">
+        <h2>Спецификация светильников</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование</th>
+                        <th>Производитель / артикул</th>
+                        <th>Габариты / Примечание</th>
+                        <th>Кол-во</th>
+                        <th>Цена, ед</th>
+                        <th>Контакты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="7" class="empty-cell">Позиции ещё не внесены — таблица заполняется</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel" id="panel-plumb">
+        <h2>Спецификация сантехники</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование</th>
+                        <th>Производитель / артикул</th>
+                        <th>Габариты / Примечание</th>
+                        <th>Кол-во</th>
+                        <th>Цена, ед</th>
+                        <th>Контакты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="7" class="empty-cell">Позиции ещё не внесены — таблица заполняется</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="foot">Дата составления: октябрь 2026. Актуальные цены уточнять у поставщиков.</div>
+
+</div>
+
+<script>
+(function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+    function show(id) {
+        panels.forEach(function (p) { p.classList.toggle('active', p.id === 'panel-' + id); });
+        tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('data-tab') === id); });
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+    }
+
+    tabs.forEach(function (t) {
+        t.addEventListener('click', function (e) {
+            e.preventDefault();
+            show(t.getAttribute('data-tab'));
+        });
+    });
+
+    function count(panel) {
+        var n = 0;
+        panel.querySelectorAll('tbody tr').forEach(function (tr) {
+            var td = tr.querySelector('td');
+            if (td && /^\d+$/.test(td.textContent.trim())) n++;
+        });
+        return n;
+    }
+
+    tabs.forEach(function (t) {
+        var p = document.getElementById('panel-' + t.getAttribute('data-tab'));
+        var c = t.querySelector('.cnt');
+        if (p && c) c.textContent = count(p);
+    });
+
+    var hash = location.hash.replace('#', '');
+    if (hash && document.getElementById('panel-' + hash)) show(hash);
+})();
+</script>
+
+</body>
+</html>
