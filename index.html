@@ -152,6 +152,17 @@
     .art-num { font-weight: bold; }
     .art-note { font-size: 12px; color: #5b6270; }
 
+    /* --- светильники: таблица с фото --- */
+    #panel-light .table-wrap table { min-width: 940px; }
+    #panel-light th:nth-child(1) { width: 18%; }
+    #panel-light th:nth-child(2) { width: 108px; }
+    #panel-light th:nth-child(3) { width: 15%; }
+    #panel-light th:nth-child(4) { width: 40%; }
+    #panel-light th:nth-child(5) { width: 70px; }
+    #panel-light th:nth-child(6) { width: 12%; }
+    #panel-light td { font-size: 13.5px; }
+
+
 
     .link {
         font-size: 12px;
@@ -236,6 +247,7 @@
         .link { font-size: 11px; }
         #panel-plumb .table-wrap table { min-width: 820px; }
         .img-cell img, .img-cell .no-img { width: 62px; height: 62px; }
+        #panel-light .table-wrap table { min-width: 820px; }
     }
 </style>
 </head>
@@ -597,23 +609,102 @@
         <h2>Спецификация светильников</h2>
         <div class="table-wrap">
             <table>
-                <thead>
+                                <thead>
                     <tr>
-                        <th>№</th>
-                        <th>Наименование</th>
-                        <th>Производитель / артикул</th>
-                        <th>Габариты / Примечание</th>
+                        <th>Тип источника света</th>
+                        <th>Изображение</th>
+                        <th>Фабрика</th>
+                        <th>Артикул / примечание</th>
                         <th>Кол-во</th>
-                        <th>Цена, ед</th>
                         <th>Контакты</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td colspan="7" class="empty-cell">Позиции ещё не внесены — таблица заполняется</td></tr>
+                    <tr data-item>
+                        <td>Люстра</td>
+                        <td class="img-cell"><a href="img/light_lustra.jpg" target="_blank" rel="noopener"><img src="img/light_lustra.jpg" alt="" loading="lazy"></a></td>
+                        <td>Odeon Light</td>
+                        <td><span class="art-num">Арт. 4639/8</span><br>серия Ida, бронзовый металл / стекло<br>G9, 8 × 40 Вт, 220 В<br>Ø 450 мм, высота 320 мм (с подвесом 1200 мм)<br><span class="art-note">3 090,60 руб., под заказ</span></td>
+                        <td>1</td>
+                        <td><a class="link" href="https://www.massive.by/product/svetiljnik-odeon-light-ida-4639-8" target="_blank" rel="noopener">massive.by</a></td>
+                    </tr>
+                    <tr data-item>
+                        <td>Бра (настенный светильник)</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель — уточнить</td>
+                        <td>4</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Вентилятор вытяжной</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель — уточнить</td>
+                        <td>1</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Вертикальный трек</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Шинопровод вертикальный.<br>Модель — уточнить</td>
+                        <td>1</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Встроенный точечный<br>потолочный светильник</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель и мощность — уточнить</td>
+                        <td>24</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Встроенный трек спот</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель — уточнить</td>
+                        <td>6</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Датчик движения</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель — уточнить</td>
+                        <td>1</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Потолочный трек</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Шинопровод потолочный.<br>Модель и длина — уточнить</td>
+                        <td>1</td>
+                        <td>уточнить</td>
+                    </tr>
+                    <tr data-item>
+                        <td>Торшер</td>
+                        <td class="img-cell"><div class="no-img">нет фото</div></td>
+                        <td>Уточнить</td>
+                        <td>Модель — уточнить</td>
+                        <td>1</td>
+                        <td>уточнить</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-    </section>
+
+        <div class="notes">
+            <h3>Примечания:</h3>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li>Количество взято из ведомости светильников; модели, кроме люстры, пока не выбраны.</li>
+                <li>В референсе люстра указана как IDA 4635/8 — такого артикула на massive.by нет, в продаже IDA 4639/8 (та же серия Ida), в таблицу внесён он.</li>
+                <li>Подходящие аналоги из проекта на ул. Савицкого 27: точечные Maytoni Technical Intro DL111-GU10-W, трек-споты Maytoni Focus TR187, шинопроводы Exility / Unity — можно взять как базу для позиций «модель — уточнить».</li>
+            </ul>
+        </div>
+</section>
 
     <section class="panel" id="panel-plumb">
         <h2>Спецификация сантехники</h2>
