@@ -101,16 +101,30 @@
         text-align: center;
     }
     td:first-child { text-align: center; font-weight: bold; width: 46px; }
-    td:nth-child(2) { width: 17%; }
-    td:nth-child(3) { width: 19%; }
-    td:nth-child(4) { width: 26%; }
+    td:nth-child(2) { width: 16%; }
+    td:nth-child(3) { width: 18%; }
+    td:nth-child(4) { width: 24%; }
     td:nth-child(5) { text-align: center; width: 78px; }
     td:nth-child(6) { text-align: center; width: 100px; }
-    td:nth-child(7) { width: 13%; }
+    td:nth-child(7) { width: 15%; }
 
     .variant { background: #fff3cd; font-style: italic; }
 
-    .link { font-size: 12px; color: #0645ad; word-break: break-all; }
+    .link {
+        font-size: 12px;
+        color: #0645ad;
+        word-break: break-all;
+        text-decoration: none;
+        border-bottom: 1px dotted rgba(6, 69, 173, .45);
+    }
+    .link:hover { border-bottom-style: solid; }
+
+    .swipe-hint {
+        display: none;
+        margin: 10px 0 0;
+        font-size: 12px;
+        color: #8a8f99;
+    }
 
     .notes {
         margin-top: 16px;
@@ -172,6 +186,7 @@
         .panel { padding: 8px; border-radius: 8px; }
         .panel h2 { font-size: 13px; padding: 8px; }
         .table-wrap table { min-width: 900px; }
+        .swipe-hint { display: block; }
         th, td { padding: 6px; }
         .link { font-size: 11px; }
     }
@@ -191,6 +206,8 @@
         <a class="tab" href="#light" data-tab="light">Светильники <span class="cnt">0</span></a>
         <a class="tab" href="#plumb" data-tab="plumb">Сантехника <span class="cnt">0</span></a>
     </nav>
+
+    <p class="swipe-hint">Таблица прокручивается вбок →</p>
 
     <section class="panel active" id="panel-mebel">
         <h2>Спецификация мебели</h2>
@@ -212,7 +229,7 @@
                     <td>1</td>
                     <td>Диван угловой Аронт Мини</td>
                     <td>Divan.by<br>Велюр (Velvet Pink)<br>Артикул: 24612-7-1</td>
-                    <td>Габариты уточнить на сайте<br><span class="link">divan.by/product/divan-uglovoj-aront-mini-velvet-pink</span></td>
+                    <td>Габариты уточнить на сайте<br><a class="link" href="https://divan.by/product/divan-uglovoj-aront-mini-velvet-pink" target="_blank" rel="noopener">divan.by/product/divan-uglovoj-aront-mini-velvet-pink</a></td>
                     <td>1</td>
                     <td>3831 руб.</td>
                     <td>divan.by<br>+375 (29) 668-66-44</td>
@@ -222,7 +239,7 @@
                     <td>2</td>
                     <td>Кресло Тилар</td>
                     <td>Divan.by<br>Мех Молочный (Cozy Milk)</td>
-                    <td>Габариты уточнить на сайте<br><span class="link">divan.by/product/kreslo-tilar-cozy-milk</span></td>
+                    <td>Габариты уточнить на сайте<br><a class="link" href="https://divan.by/product/kreslo-tilar-cozy-milk" target="_blank" rel="noopener">divan.by/product/kreslo-tilar-cozy-milk</a></td>
                     <td>1</td>
                     <td>Инд. просчет</td>
                     <td>divan.by<br>+375 (29) 668-66-44</td>
@@ -232,7 +249,7 @@
                     <td>3</td>
                     <td>Пуф Ньюбери</td>
                     <td>Divan.by<br>Велюр Серый (Velvet Grey)<br>Ножки: артикул 2716629-170-1</td>
-                    <td>Пуф с выбором ножек<br><span class="link">divan.by/product/puf-nyuberi-velvet-grey</span></td>
+                    <td>Пуф с выбором ножек<br><a class="link" href="https://divan.by/product/puf-nyuberi-velvet-grey" target="_blank" rel="noopener">divan.by/product/puf-nyuberi-velvet-grey</a></td>
                     <td>1</td>
                     <td>241 руб.</td>
                     <td>divan.by<br>+375 (44) 763-02-65</td>
@@ -242,7 +259,7 @@
                     <td>4</td>
                     <td>Кровать Foster 160</td>
                     <td>Divan.by<br>Soft Terra</td>
-                    <td>Ширина 160 см<br><span class="link">divan.by/product/krovat-foster-160-soft-terra</span></td>
+                    <td>Ширина 160 см<br><a class="link" href="https://divan.by/product/krovat-foster-160-soft-terra" target="_blank" rel="noopener">divan.by/product/krovat-foster-160-soft-terra</a></td>
                     <td>1</td>
                     <td>Инд. просчет</td>
                     <td>divan.by<br>+375 (44) 763-02-65</td>
@@ -252,14 +269,14 @@
                     <td rowspan="2">5</td>
                     <td rowspan="2">Стул для рабочего стола<br><br><strong>ВАРИАНТ 1 или ВАРИАНТ 2</strong></td>
                     <td><strong>Вариант 1:</strong><br>Стул Айвин<br>Divan.by<br>Велюр Бежевый / Массив бука натуральный</td>
-                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><span class="link">divan.by/product/stul-ajvin-velvet-beige</span></td>
+                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><a class="link" href="https://divan.by/product/stul-ajvin-velvet-beige" target="_blank" rel="noopener">divan.by/product/stul-ajvin-velvet-beige</a></td>
                     <td>2 шт</td>
                     <td>612 руб.</td>
                     <td>divan.by<br>+375 (44) 763-02-65</td>
                     </tr>
                     <tr class="variant">
                     <td><strong>Вариант 2:</strong><br>Стул Айвин<br>Divan.by<br>Велюр Бежевый / Массив бука натуральный<br>(тот же артикул, резервный вариант)</td>
-                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><span class="link">divan.by/product/stul-ajvin-velvet-beige</span></td>
+                    <td>58×58×81 см<br>Высота сиденья: 47 см<br><a class="link" href="https://divan.by/product/stul-ajvin-velvet-beige" target="_blank" rel="noopener">divan.by/product/stul-ajvin-velvet-beige</a></td>
                     <td>2 шт</td>
                     <td>612 руб.</td>
                     <td>divan.by<br>+375 (44) 763-02-65</td>
@@ -269,14 +286,14 @@
                     <td rowspan="2">6</td>
                     <td rowspan="2">Стул складной для кухни<br><br><strong>ВАРИАНТ 1 или ВАРИАНТ 2</strong></td>
                     <td><strong>Вариант 1:</strong><br>Стул складной деревянный Хоф<br>Массив бука</td>
-                    <td>Складная конструкция<br>Габариты уточнить на сайте<br><span class="link">ozon.by/product/stul-skladnoy-derevyannyy-hof-dlya-kuhni-788159696</span></td>
+                    <td>Складная конструкция<br>Габариты уточнить на сайте<br><a class="link" href="https://ozon.by/product/stul-skladnoy-derevyannyy-hof-dlya-kuhni-788159696" target="_blank" rel="noopener">ozon.by/product/stul-skladnoy-derevyannyy-hof-dlya-kuhni-788159696</a></td>
                     <td>4–6 шт</td>
                     <td>Уточнить</td>
                     <td>ozon.by</td>
                     </tr>
                     <tr class="variant">
                     <td><strong>Вариант 2:</strong><br>Стул Хоф<br>Bentwood<br>Массив бука, венская гнутая мебель</td>
-                    <td>Классический дизайн<br>Габариты уточнить на сайте<br><span class="link">bentwood.ru/catalog/stulya_main/stul_khof</span></td>
+                    <td>Классический дизайн<br>Габариты уточнить на сайте<br><a class="link" href="https://bentwood.ru/catalog/stulya_main/stul_khof" target="_blank" rel="noopener">bentwood.ru/catalog/stulya_main/stul_khof</a></td>
                     <td>4–6 шт</td>
                     <td>Уточнить</td>
                     <td>bentwood.ru</td>
@@ -286,7 +303,7 @@
                     <td>7</td>
                     <td>Журнальный стол Хейко-2</td>
                     <td>Divan.by<br>Хейко-2 Black</td>
-                    <td>Чёрный, современный дизайн<br><span class="link">divan.by/product/jurnalnyj-stol-hejko-2-black</span></td>
+                    <td>Чёрный, современный дизайн<br><a class="link" href="https://divan.by/product/jurnalnyj-stol-hejko-2-black" target="_blank" rel="noopener">divan.by/product/jurnalnyj-stol-hejko-2-black</a></td>
                     <td>1</td>
                     <td>Инд. просчет</td>
                     <td>divan.by<br>+375 (44) 763-02-65</td>
@@ -296,7 +313,7 @@
                     <td>8</td>
                     <td>Механизм для выдвижного стола с ножкой</td>
                     <td>Starax S-2145-A<br>Производитель: Starax (Турция)<br>Импортёр: ООО «Фортэ Пласт»</td>
-                    <td>Ширина корпуса: 600 мм<br>Цвет: антрацит<br><span class="link">forte-plast.by/mekhanizm-dlya-vidvizhnogo-stola-starax-s-2145-a</span></td>
+                    <td>Ширина корпуса: 600 мм<br>Цвет: антрацит<br><a class="link" href="https://forte-plast.by/mekhanizm-dlya-vidvizhnogo-stola-starax-s-2145-a" target="_blank" rel="noopener">forte-plast.by/mekhanizm-dlya-vidvizhnogo-stola-starax-s-2145-a</a></td>
                     <td>1</td>
                     <td>953.10 руб.</td>
                     <td>ООО «Фортэ Пласт»<br>223050, Минская обл.,<br>аг. Колодищи,<br>ул. 50 лет БССР, 29А</td>
