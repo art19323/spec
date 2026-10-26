@@ -86,7 +86,7 @@
     }
 
     .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .table-wrap table { min-width: 1060px; }
+    .table-wrap table { min-width: 980px; }
 
     table { width: 100%; border-collapse: collapse; }
     th, td {
@@ -100,13 +100,17 @@
         font-weight: bold;
         text-align: center;
     }
-    #panel-mebel td:first-child { text-align: center; font-weight: bold; width: 46px; }
-    #panel-mebel td:nth-child(2) { width: 16%; }
-    #panel-mebel td:nth-child(3) { width: 18%; }
-    #panel-mebel td:nth-child(4) { width: 24%; }
-    #panel-mebel td:nth-child(5) { text-align: center; width: 78px; }
-    #panel-mebel td:nth-child(6) { text-align: center; width: 118px; }
-    #panel-mebel td:nth-child(7) { width: 15%; }
+    #panel-mebel table { table-layout: fixed; }
+    #panel-mebel th:nth-child(1) { width: 40px; }
+    #panel-mebel th:nth-child(2) { width: 19%; }
+    #panel-mebel th:nth-child(3) { width: 15%; }
+    #panel-mebel th:nth-child(4) { width: 28%; }
+    #panel-mebel th:nth-child(5) { width: 62px; }
+    #panel-mebel th:nth-child(6) { width: 96px; }
+    #panel-mebel th:nth-child(7) { width: 142px; }
+    #panel-mebel td:first-child { text-align: center; font-weight: bold; }
+    #panel-mebel td:nth-child(5) { text-align: center; white-space: nowrap; }
+    #panel-mebel td:nth-child(6) { text-align: center; }
 
     .variant { background: #fff3cd; font-style: italic; }
 
@@ -120,13 +124,14 @@
     }
 
     /* --- сантехника: таблица с фотографиями --- */
-    #panel-plumb .table-wrap table { min-width: 940px; }
-    #panel-plumb th:nth-child(1) { width: 104px; }
-    #panel-plumb th:nth-child(2) { width: 19%; }
+    #panel-plumb .table-wrap table { min-width: 880px; table-layout: fixed; }
+    #panel-plumb th:nth-child(1) { width: 96px; }
+    #panel-plumb th:nth-child(2) { width: 21%; }
     #panel-plumb th:nth-child(3) { width: 14%; }
-    #panel-plumb th:nth-child(4) { width: 37%; }
-    #panel-plumb th:nth-child(5) { width: 70px; }
-    #panel-plumb th:nth-child(6) { width: 13%; }
+    #panel-plumb th:nth-child(4) { width: 100%; }
+    #panel-plumb th:nth-child(5) { width: 64px; }
+    #panel-plumb th:nth-child(6) { width: 128px; }
+    #panel-plumb td:nth-child(5) { white-space: nowrap; }
     #panel-plumb td { font-size: 13.5px; }
 
     .img-cell { width: 104px; }
@@ -157,13 +162,14 @@
     .art-note { font-size: 12px; color: #5b6270; }
 
     /* --- светильники: таблица с фото --- */
-    #panel-light .table-wrap table { min-width: 940px; }
-    #panel-light th:nth-child(1) { width: 18%; }
-    #panel-light th:nth-child(2) { width: 108px; }
-    #panel-light th:nth-child(3) { width: 15%; }
-    #panel-light th:nth-child(4) { width: 40%; }
-    #panel-light th:nth-child(5) { width: 70px; }
-    #panel-light th:nth-child(6) { width: 12%; }
+    #panel-light .table-wrap table { min-width: 880px; table-layout: fixed; }
+    #panel-light th:nth-child(1) { width: 20%; }
+    #panel-light th:nth-child(2) { width: 96px; }
+    #panel-light th:nth-child(3) { width: 13%; }
+    #panel-light th:nth-child(4) { width: 100%; }
+    #panel-light th:nth-child(5) { width: 64px; }
+    #panel-light th:nth-child(6) { width: 128px; }
+    #panel-light td:nth-child(5) { white-space: nowrap; }
     #panel-light td { font-size: 13.5px; }
 
 
